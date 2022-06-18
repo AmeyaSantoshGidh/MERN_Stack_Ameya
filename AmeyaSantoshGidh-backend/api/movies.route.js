@@ -9,5 +9,7 @@ router.route('/id/:id').get(MoviesController.apiGetMovieById);
 router.route('/ratings').get(MoviesController.apiGetRatings);
 
 router.route('/review').post(ReviewsController.apiPostReview);
+router.route('/review').put(ReviewsController.apiUpdateReview);
+router.route('/review').delete(ReviewsController.apiDeleteReview);
 
 export default router;
