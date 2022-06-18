@@ -32,7 +32,7 @@ export default class MoviesController {
             let id = req.params.id || {};
             let movie = await MoviesDAO.apiGetMovieById(id);
             if(!movie) {
-                res.status(404).json({ error: 'not found' });
+                res.status(500).json({ error: 'not a found' });
                 return;
             }
             res.json(movie);

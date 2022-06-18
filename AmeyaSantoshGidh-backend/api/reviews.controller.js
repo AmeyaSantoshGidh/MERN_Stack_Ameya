@@ -1,51 +1,41 @@
-import mongofb from "mongodb"
-const ObjectId = mongodb.ObjectId
-let reviews;
+import ReviewsDAO from "../dao/reviewsDAO.js";
 
-export default class ReviewsDAO{
-
-    static async injectDB(conn){
-        if(reviews){
-            return;
+export default class ReviewsController {
+    static async apiPostReview(req, res, next) {
+      try{
+        const movieId = req.body.movie_id;
+        const review = req.body.review;
+        const userInfo = {
+          name:req.body.name,
+          _id:req.body.user_id
         }
-        try{
-            reviews = await conn.db(process.env.MOVIEREVIEWS_NS).collection("reviews");
+        const date = new Date();
+        const reviewResponse = await ReviewsDAO.addReview(
+          movieId,
+          userInfo,
+          review,
+          date
+        );
+        var {error} = reviewResponse;
+        console.log(error);
+        if(error){
+          res.status(500).json({error:"Unable to post review."});
         }
-        catch(e){
-            console.error(`Unable to establish connection handle in reviewsDA: ${e}`);
+        else{
+          res.json({status:"success"});
         }
-        
+      }catch(e){
+        res.status(500).json({error:e.message});
+      }
     }
-
-    static async addReview(movieId, user, review,date){
-
-        try{
-            const reviewDoc = {
-                name:user.name,
-                user_id: user._id,
-                date : date,
-                review : review,
-                movie_id: ObjectId(movieId)
-            }
-            return await reviews.insertOne(reviewDoc);
-        }
-        catch(e){
-            console.error(`Unable to post review: ${e}`)
-            return {error:e};
-        }
-    
-    
+  
+    static async apiUpdateReview(req, res, next) {
+      //
     }
-    
-    static async updateReview(reviewId,userId,review,date){
-        
+  
+    static async apiDeleteReview(req, res, next) {
+      //
+     
+      
     }
-
-    static async deleteReview(reviewId,userId){
-        
-    }
-
-
-
-
-}
+  }
