@@ -24,5 +24,19 @@ class MoviesDataService {
         return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/ratings`);
     }
 
+    createReview(data){
+        return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/review`,data);
+        
+    }
+// change
+    editReview(data){
+        return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/review`, data)
+        
+    }
+    
+    DeleteReview(data){
+        return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/review`,{data})
+    }
+
 }
 export default new MoviesDataService();

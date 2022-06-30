@@ -168,7 +168,7 @@ return(
                     <Card.Text>
                         {movie.plot}
                     </Card.Text>
-                    <Link to = {"/movies"+movie._id}>
+                    <Link to = {"/movies/"+movie._id}>
                         View Reviews
                     </Link>
                     </Card.Body>
