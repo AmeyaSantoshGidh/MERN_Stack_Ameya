@@ -4,15 +4,17 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-
+// import { Form } from 'react-bootstrap/lib/navbar';
 
 const AddReview = ({user}) =>{
-
-    const navigate = useNavigate()
-    let params = useParams();
     let editing = false;
     let initialReviewState = "";
     let location = useLocation();
+
+
+    const navigate = useNavigate()
+    let params = useParams();
+
 
     const [review,setReview] = useState(initialReviewState);
 
@@ -21,7 +23,7 @@ const AddReview = ({user}) =>{
         setReview(review);
     }
 
-   const saveReview=()=>{
+    const saveReview=()=>{
     var data={
         review:review,
         name:user.name,
@@ -41,9 +43,8 @@ const AddReview = ({user}) =>{
             console.log(e);
         });
 
-    }
+    }  
     else{
-
         MovieDataService.createReview(data)
         .then(response=>{
             navigate("/movies/"+params.id)
@@ -56,21 +57,20 @@ const AddReview = ({user}) =>{
 
 
 return(
-    <Container>
+    <Container className="main-container">
     <Form>
     <Form.Group className="mb-3">
     <Form.Label>
     {editing?"Edit":"Create"}
     Review
     </Form.Label>
-
-    <Form.Control
-    as = "textarea"
-    type="text"
+ <Form.Control
+    as ="textarea"
+    type="text" 
     required
     review={review}
     onChange={onChangeReview}
-    defaultValue={editing?null:""}
+    defaultValue={ editing ? null : ""}
     />
     </Form.Group>
     <Button

@@ -63,7 +63,6 @@ return(
                     Add Review
                 </Link>
             }
-            console.log("user:"+ user)
             </Card.Body>
         </Card>
         <h2>
@@ -74,7 +73,7 @@ return(
         <div className="d-flex">
            <div className='flex-shrink-0 reviewsText'>
             <h5>
-                {review.name+"reviewed on"}
+                {review.name+" reviewed on "}
                 {moment(review.date).format("Do MMMM YYYY")}
             </h5>
             <p className='review'>
