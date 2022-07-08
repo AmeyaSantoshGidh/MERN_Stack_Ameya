@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {GoogleLogout} from "react-google-login";
 import { googleLogout } from '@react-oauth/google';
@@ -40,6 +41,3 @@ export default function Logout({setUser}){
     
 
 } 
-
-
-// export default Logout;
