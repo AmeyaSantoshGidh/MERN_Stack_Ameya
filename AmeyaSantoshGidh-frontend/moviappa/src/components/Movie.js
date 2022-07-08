@@ -84,6 +84,7 @@ return(
                 <Col>
                 <Link to = {{pathname:"/movies/"+params.id+"/review"
                 }}
+                // editing:true;
                     state ={{
                         currentReview:review
                     }}>

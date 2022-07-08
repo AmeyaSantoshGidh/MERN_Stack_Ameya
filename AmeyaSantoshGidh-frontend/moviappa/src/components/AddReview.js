@@ -11,6 +11,11 @@ const AddReview = ({user}) =>{
     let initialReviewState = "";
     let location = useLocation();
 
+    if(location.state && location.state.currentReview.review){
+        editing = true; 
+        initialReviewState = location.state.currentReview.review
+    }
+
 
     const navigate = useNavigate()
     let params = useParams();
@@ -33,7 +38,7 @@ const AddReview = ({user}) =>{
     }
     if(editing){
         // change
-        console.log(location.state.currentReview);
+        // console.log(location.state.currentReview);
         data.review_id = location.state.currentReview._id
         MovieDataService.editReview(data)
         .then(response=>{
